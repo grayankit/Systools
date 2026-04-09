@@ -64,16 +64,16 @@ int main() {
     sleep(1);
     num_cpus = read_cpu_stats(curr, MAX_CORES);
     printf("\033[2J\033[H");
-    for (int i = 0; i<num_cpus; i++) {
+    for (int i = 0; i < num_cpus; i++) {
       double usage = calc_usage(&prev[i], &curr[i]);
-      printf("%-6s[",curr[i].label);
+      printf("%-6s[", curr[i].label);
       int bars = (int)(usage / 5);
-      for (int b = 0; b<20; b++) {
-        putchar(b<bars?'o':' ');
+      for (int b = 0; b < 20; b++) {
+        putchar(b < bars ? 'o' : ' ');
       }
-      printf("] %5.1f%%\n",usage);
+      printf("] %5.1f%%\n", usage);
     }
-  memcpy(prev, curr,sizeof(CpuStat)*num_cpus);
+    memcpy(prev, curr, sizeof(CpuStat) * num_cpus);
   }
-return 0;
+  return 0;
 }
